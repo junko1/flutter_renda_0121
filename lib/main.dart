@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 
-/*
-void main() {
-  //runApp(image());
-  rendaMain()=>runApp(image()=>NextPage());
-}
- */
+
+
 void main()=>runApp(image());
 
 // class rendaMain extends StatelessWidget {
@@ -66,7 +64,7 @@ class image extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: new Scaffold(
+      home: new Scaffold(resizeToAvoidBottomPadding: false,
         body: new Stack(
           children: <Widget>[
             new Image.asset("cosmo.jpg",
@@ -149,9 +147,11 @@ class image extends StatelessWidget {
                     },
                     child: new Text("10s",
                       style: new TextStyle(
-                          fontSize: 20
+                          fontSize: 20,
+                        color: Colors.white,
                       ),
                     ),
+                    color: Colors.white.withOpacity(0.0),
                     shape: Border(
                       top:BorderSide(color: Colors.red),
                       left:BorderSide(color: Colors.red),
@@ -171,9 +171,11 @@ class image extends StatelessWidget {
                     },
                   child: new Text("60s",
                   style: new TextStyle(
-                    fontSize: 20
+                    fontSize: 20,
+                    color: Colors.white,
                   ),
                   ),
+                    color: Colors.white.withOpacity(0.0),
                     shape: Border(
                       top:BorderSide(color: Colors.red),
                       left:BorderSide(color: Colors.red),
@@ -191,12 +193,14 @@ class image extends StatelessWidget {
                   child: new RaisedButton(
                     onPressed:(){
                       print("pressed");
+
                     },
                     child: new Text("ENDLESS",
                       style: new TextStyle(
-                          fontSize: 20
+                          fontSize: 20,
+                        color: Colors.white,
                       ),
-                    ),
+                    ),color: Colors.white.withOpacity(0.0),
                     shape: Border(
                       top:BorderSide(color: Colors.red),
                       left:BorderSide(color: Colors.red),
@@ -316,9 +320,10 @@ class Play_Button extends StatelessWidget {
             },
             child: new Text("PLAY!",
               style: new TextStyle(
-                  fontSize: 45
+                  fontSize: 45,
+                color: Colors.white,
               ),
-            ),
+            ),color: Colors.white.withOpacity(0.0),
             shape: Border(
             top:BorderSide(color: Colors.red),
             left:BorderSide(color: Colors.red),
@@ -329,9 +334,562 @@ class Play_Button extends StatelessWidget {
       ),);
   }
 }
-//実際にゲームをする画面を作成する
+//実際にゲームをする画面を作成する　動的なWidgetを作る
+class NextPage1 extends StatefulWidget {
+  @override
+  _NextPage1State createState() => _NextPage1State();
+  //var horizontal_position=<double>[];
+
+
+}
+
+class _NextPage1State extends State<NextPage1> {
+  @override
+  //ここで状態を管理する
+  Widget build(BuildContext context) {
+    var horizontal_position1=[-0.9,-0.3,0.3,0.9];
+    var vertical_direction=0.6;
+    int count=0;
+    Widget build(BuildContext context) {
+      return MaterialApp(
+
+        home: new Scaffold(
+          body: new Stack(
+
+              children: <Widget>[
+                new Image.asset("CatCosmo.jpg",
+                  fit:BoxFit.cover,
+                  height: double.infinity,
+                  width: double.infinity,
+                ),
+                //QUITボタンを作成する
+                new Align(
+
+                  alignment: new Alignment(0.9, -0.7),
+
+                  child: Container(
+                    height: 60,
+                    width: 100,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        Navigator.pop(context);
+                        //ボタンを押したときの処理を記述する
+
+                      },
+                      child: new Text("QUIT",
+                        style: new TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                //連打された回数を表示する
+                //空白のボタンを作成する　　4×4
+
+                new Align(
+                  alignment: new Alignment(-0.9, 0.6),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      //ボタンが押されたときの処理を書く
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+                ),
+                new Align(
+                  alignment: new Alignment(-0.3, 0.6),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        count+=1;
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                new Align(
+                  alignment: new Alignment(0.3, 0.6),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                new Align(
+                  alignment: new Alignment(0.9, 0.6),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                new Align(
+                  alignment: new Alignment(-0.9, 1.5),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                new Align(
+                  alignment: new Alignment(-0.3, 1.5),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                new Align(
+                  alignment: new Alignment(0.3, 1.5),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                new Align(
+                  alignment: new Alignment(0.9, 1.5),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                new Align(
+                  alignment: new Alignment(-0.9, 2.4),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+                ),
+                new Align(
+                  alignment: new Alignment(-0.3, 2.4),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                new Align(
+                  alignment: new Alignment(0.3, 2.4),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                new Align(
+                  alignment: new Alignment(0.9, 2.4),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                new Align(
+                  alignment: new Alignment(-0.9, 3.3),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                new Align(
+                  alignment: new Alignment(-0.9, 3.3),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+                ),
+                new Align(
+                  alignment: new Alignment(-0.3, 3.3),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                new Align(
+                  alignment: new Alignment(0.3, 3.3),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                new Align(
+                  alignment: new Alignment(0.9, 3.3),
+                  child: Container(
+                    height: 100,
+                    width: 80,
+                    margin: new EdgeInsets.only(bottom: 400),
+                    child: new RaisedButton(
+                      onPressed:(){
+                        print("pressed");
+                      },
+
+                      child: new Text("　　　",
+                        style: new TextStyle(
+                            fontSize: 20
+                        ),
+                      ),color: Colors.white.withOpacity(0.0),
+                      shape: Border(
+                        top:BorderSide(color: Colors.red),
+                        left:BorderSide(color: Colors.red),
+                        right:BorderSide(color: Colors.red),
+                        bottom:BorderSide(color: Colors.red),
+                      ),
+                    ),
+
+                  ),
+
+                ),
+                //カウントした回数を入れるテキストボックスを作成する
+                new Align(alignment: new Alignment(0.3, 0.6),
+                  child:  new Text(  '$count',
+                    style: new TextStyle(
+                      fontSize: 20,
+                    ),
+
+                  ),
+
+                )
+              ]
+
+          ),
+        ),
+
+      );
+
+    }
+    return Scaffold();
+  }
+}
+
+/*
 class NextPage extends StatelessWidget {
   @override
+  //var horizontal_position=<double>[];
+  var horizontal_position1=[-0.9,-0.3,0.3,0.9];
+  var vertical_direction=0.6;
+  int count=0;
   Widget build(BuildContext context) {
     return MaterialApp(
 
@@ -344,7 +902,6 @@ class NextPage extends StatelessWidget {
           height: double.infinity,
           width: double.infinity,
         ),
-            /*
             //QUITボタンを作成する
             new Align(
 
@@ -356,16 +913,15 @@ class NextPage extends StatelessWidget {
                 margin: new EdgeInsets.only(bottom: 400),
                 child: new RaisedButton(
                   onPressed:(){
+                    Navigator.pop(context);
                     //ボタンを押したときの処理を記述する
 
                   },
                   child: new Text("QUIT",
                     style: new TextStyle(
                         fontSize: 20,
-                        backgroundColor:
-                        Colors.black.withOpacity(0.1),
                     ),
-                  ),
+                  ),color: Colors.white.withOpacity(0.0),
 
                   shape: Border(
                     top:BorderSide(color: Colors.red),
@@ -378,9 +934,9 @@ class NextPage extends StatelessWidget {
               ),
 
             ),
-            */
             //連打された回数を表示する
-            //空白のボタンを作成する　　4×4
+    //空白のボタンを作成する　　4×4
+
             new Align(
               alignment: new Alignment(-0.9, 0.6),
               child: Container(
@@ -388,6 +944,7 @@ class NextPage extends StatelessWidget {
                   width: 80,
                   margin: new EdgeInsets.only(bottom: 400),
                   child: new RaisedButton(
+                    //ボタンが押されたときの処理を書く
                     onPressed:(){
                       print("pressed");
                     },
@@ -396,7 +953,7 @@ class NextPage extends StatelessWidget {
                       style: new TextStyle(
                           fontSize: 20
                       ),
-                    ),
+                    ),color: Colors.white.withOpacity(0.0),
 
                     shape: Border(
                       top:BorderSide(color: Colors.red),
@@ -416,14 +973,14 @@ class NextPage extends StatelessWidget {
                 margin: new EdgeInsets.only(bottom: 400),
                 child: new RaisedButton(
                   onPressed:(){
-                    print("pressed");
+                    count+=1;
                   },
 
                   child: new Text("　　　",
                     style: new TextStyle(
                         fontSize: 20
                     ),
-                  ),
+                  ),color: Colors.white.withOpacity(0.0),
 
                   shape: Border(
                     top:BorderSide(color: Colors.red),
@@ -451,13 +1008,12 @@ class NextPage extends StatelessWidget {
                     style: new TextStyle(
                         fontSize: 20
                     ),
-                  ),
+                  ),color: Colors.white.withOpacity(0.0),
 
                   shape: Border(
                     top:BorderSide(color: Colors.red),
                     left:BorderSide(color: Colors.red),
                     right:BorderSide(color: Colors.red),
-                    bottom:BorderSide(color: Colors.red),
                   ),
                 ),
 
@@ -479,7 +1035,61 @@ class NextPage extends StatelessWidget {
                     style: new TextStyle(
                         fontSize: 20
                     ),
+                  ),color: Colors.white.withOpacity(0.0),
+                  shape: Border(
+                    top:BorderSide(color: Colors.red),
+                    left:BorderSide(color: Colors.red),
+                    right:BorderSide(color: Colors.red),
+                    bottom:BorderSide(color: Colors.red),
                   ),
+                ),
+
+              ),
+
+            ),
+            new Align(
+              alignment: new Alignment(-0.9, 1.5),
+              child: Container(
+                height: 100,
+                width: 80,
+                margin: new EdgeInsets.only(bottom: 400),
+                child: new RaisedButton(
+                  onPressed:(){
+                    print("pressed");
+                  },
+
+                  child: new Text("　　　",
+                    style: new TextStyle(
+                        fontSize: 20
+                    ),
+                  ),color: Colors.white.withOpacity(0.0),
+                  shape: Border(
+                    top:BorderSide(color: Colors.red),
+                    left:BorderSide(color: Colors.red),
+                    right:BorderSide(color: Colors.red),
+                    bottom:BorderSide(color: Colors.red),
+                  ),
+                ),
+
+              ),
+
+            ),
+            new Align(
+              alignment: new Alignment(-0.3, 1.5),
+              child: Container(
+                height: 100,
+                width: 80,
+                margin: new EdgeInsets.only(bottom: 400),
+                child: new RaisedButton(
+                  onPressed:(){
+                    print("pressed");
+                  },
+
+                  child: new Text("　　　",
+                    style: new TextStyle(
+                        fontSize: 20
+                    ),
+                  ),color: Colors.white.withOpacity(0.0),
 
                   shape: Border(
                     top:BorderSide(color: Colors.red),
@@ -492,7 +1102,316 @@ class NextPage extends StatelessWidget {
               ),
 
             ),
-        ]
+            new Align(
+              alignment: new Alignment(0.3, 1.5),
+              child: Container(
+                height: 100,
+                width: 80,
+                margin: new EdgeInsets.only(bottom: 400),
+                child: new RaisedButton(
+                  onPressed:(){
+                    print("pressed");
+                  },
+
+                  child: new Text("　　　",
+                    style: new TextStyle(
+                        fontSize: 20
+                    ),
+                  ),color: Colors.white.withOpacity(0.0),
+
+                  shape: Border(
+                    top:BorderSide(color: Colors.red),
+                    left:BorderSide(color: Colors.red),
+                    right:BorderSide(color: Colors.red),
+                  ),
+                ),
+
+              ),
+
+            ),
+            new Align(
+              alignment: new Alignment(0.9, 1.5),
+              child: Container(
+                height: 100,
+                width: 80,
+                margin: new EdgeInsets.only(bottom: 400),
+                child: new RaisedButton(
+                  onPressed:(){
+                    print("pressed");
+                  },
+
+                  child: new Text("　　　",
+                    style: new TextStyle(
+                        fontSize: 20
+                    ),
+                  ),color: Colors.white.withOpacity(0.0),
+                  shape: Border(
+                    top:BorderSide(color: Colors.red),
+                    left:BorderSide(color: Colors.red),
+                    right:BorderSide(color: Colors.red),
+                    bottom:BorderSide(color: Colors.red),
+                  ),
+                ),
+
+              ),
+
+            ),
+            new Align(
+              alignment: new Alignment(-0.9, 2.4),
+              child: Container(
+                height: 100,
+                width: 80,
+                margin: new EdgeInsets.only(bottom: 400),
+                child: new RaisedButton(
+                  onPressed:(){
+                    print("pressed");
+                  },
+
+                  child: new Text("　　　",
+                    style: new TextStyle(
+                        fontSize: 20
+                    ),
+                  ),color: Colors.white.withOpacity(0.0),
+
+                  shape: Border(
+                    top:BorderSide(color: Colors.red),
+                    left:BorderSide(color: Colors.red),
+                    right:BorderSide(color: Colors.red),
+                    bottom:BorderSide(color: Colors.red),
+                  ),
+                ),
+
+              ),
+            ),
+            new Align(
+              alignment: new Alignment(-0.3, 2.4),
+              child: Container(
+                height: 100,
+                width: 80,
+                margin: new EdgeInsets.only(bottom: 400),
+                child: new RaisedButton(
+                  onPressed:(){
+                    print("pressed");
+                  },
+
+                  child: new Text("　　　",
+                    style: new TextStyle(
+                        fontSize: 20
+                    ),
+                  ),color: Colors.white.withOpacity(0.0),
+
+                  shape: Border(
+                    top:BorderSide(color: Colors.red),
+                    left:BorderSide(color: Colors.red),
+                    right:BorderSide(color: Colors.red),
+                    bottom:BorderSide(color: Colors.red),
+                  ),
+                ),
+
+              ),
+
+            ),
+            new Align(
+              alignment: new Alignment(0.3, 2.4),
+              child: Container(
+                height: 100,
+                width: 80,
+                margin: new EdgeInsets.only(bottom: 400),
+                child: new RaisedButton(
+                  onPressed:(){
+                    print("pressed");
+                  },
+
+                  child: new Text("　　　",
+                    style: new TextStyle(
+                        fontSize: 20
+                    ),
+                  ),color: Colors.white.withOpacity(0.0),
+
+                  shape: Border(
+                    top:BorderSide(color: Colors.red),
+                    left:BorderSide(color: Colors.red),
+                    right:BorderSide(color: Colors.red),
+                  ),
+                ),
+
+              ),
+
+            ),
+            new Align(
+              alignment: new Alignment(0.9, 2.4),
+              child: Container(
+                height: 100,
+                width: 80,
+                margin: new EdgeInsets.only(bottom: 400),
+                child: new RaisedButton(
+                  onPressed:(){
+                    print("pressed");
+                  },
+
+                  child: new Text("　　　",
+                    style: new TextStyle(
+                        fontSize: 20
+                    ),
+                  ),color: Colors.white.withOpacity(0.0),
+                  shape: Border(
+                    top:BorderSide(color: Colors.red),
+                    left:BorderSide(color: Colors.red),
+                    right:BorderSide(color: Colors.red),
+                    bottom:BorderSide(color: Colors.red),
+                  ),
+                ),
+
+              ),
+
+            ),
+            new Align(
+              alignment: new Alignment(-0.9, 3.3),
+              child: Container(
+                height: 100,
+                width: 80,
+                margin: new EdgeInsets.only(bottom: 400),
+                child: new RaisedButton(
+                  onPressed:(){
+                    print("pressed");
+                  },
+
+                  child: new Text("　　　",
+                    style: new TextStyle(
+                        fontSize: 20
+                    ),
+                  ),color: Colors.white.withOpacity(0.0),
+                  shape: Border(
+                    top:BorderSide(color: Colors.red),
+                    left:BorderSide(color: Colors.red),
+                    right:BorderSide(color: Colors.red),
+                    bottom:BorderSide(color: Colors.red),
+                  ),
+                ),
+
+              ),
+
+            ),
+            new Align(
+              alignment: new Alignment(-0.9, 3.3),
+              child: Container(
+                height: 100,
+                width: 80,
+                margin: new EdgeInsets.only(bottom: 400),
+                child: new RaisedButton(
+                  onPressed:(){
+                    print("pressed");
+                  },
+
+                  child: new Text("　　　",
+                    style: new TextStyle(
+                        fontSize: 20
+                    ),
+                  ),color: Colors.white.withOpacity(0.0),
+
+                  shape: Border(
+                    top:BorderSide(color: Colors.red),
+                    left:BorderSide(color: Colors.red),
+                    right:BorderSide(color: Colors.red),
+                    bottom:BorderSide(color: Colors.red),
+                  ),
+                ),
+
+              ),
+            ),
+            new Align(
+              alignment: new Alignment(-0.3, 3.3),
+              child: Container(
+                height: 100,
+                width: 80,
+                margin: new EdgeInsets.only(bottom: 400),
+                child: new RaisedButton(
+                  onPressed:(){
+                    print("pressed");
+                  },
+
+                  child: new Text("　　　",
+                    style: new TextStyle(
+                        fontSize: 20
+                    ),
+                  ),color: Colors.white.withOpacity(0.0),
+
+                  shape: Border(
+                    top:BorderSide(color: Colors.red),
+                    left:BorderSide(color: Colors.red),
+                    right:BorderSide(color: Colors.red),
+                    bottom:BorderSide(color: Colors.red),
+                  ),
+                ),
+
+              ),
+
+            ),
+            new Align(
+              alignment: new Alignment(0.3, 3.3),
+              child: Container(
+                height: 100,
+                width: 80,
+                margin: new EdgeInsets.only(bottom: 400),
+                child: new RaisedButton(
+                  onPressed:(){
+                    print("pressed");
+                  },
+
+                  child: new Text("　　　",
+                    style: new TextStyle(
+                        fontSize: 20
+                    ),
+                  ),color: Colors.white.withOpacity(0.0),
+
+                  shape: Border(
+                    top:BorderSide(color: Colors.red),
+                    left:BorderSide(color: Colors.red),
+                    right:BorderSide(color: Colors.red),
+                  ),
+                ),
+
+              ),
+
+            ),
+            new Align(
+              alignment: new Alignment(0.9, 3.3),
+              child: Container(
+                height: 100,
+                width: 80,
+                margin: new EdgeInsets.only(bottom: 400),
+                child: new RaisedButton(
+                  onPressed:(){
+                    print("pressed");
+                  },
+
+                  child: new Text("　　　",
+                    style: new TextStyle(
+                        fontSize: 20
+                    ),
+                  ),color: Colors.white.withOpacity(0.0),
+                  shape: Border(
+                    top:BorderSide(color: Colors.red),
+                    left:BorderSide(color: Colors.red),
+                    right:BorderSide(color: Colors.red),
+                    bottom:BorderSide(color: Colors.red),
+                  ),
+                ),
+
+              ),
+
+            ),
+          //カウントした回数を入れるテキストボックスを作成する
+          new Align(alignment: new Alignment(0.3, 0.6),
+          child:  new Text(  '$count',
+          style: new TextStyle(
+            fontSize: 20,
+          ),
+
+          ),
+
+          )
+          ]
 
         ),
     ),
@@ -501,50 +1420,8 @@ class NextPage extends StatelessWidget {
 
   }
 }
-//動画を再生する
-// class video_play_Button extends StatelessWidget {
-//   const V_play_Button({
-//     Key key,
-//   }) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return new Align(
-//       alignment: new Alignment(0.9, -0.7),
-//       child: Container(
-//           margin: new EdgeInsets.only(bottom: 400),
-//           child: new RaisedButton(
-//             onPressed:(){
-//               //print("pressed");
-//               // Navigator.push(
-//               //     context,
-//               //     MaterialPageRoute(builder: (context)=>reproducing_screen(),
-//               //     )
-//               );
-//             },
-//             child: new Text("QUIT",
-//               style: new TextStyle(
-//                   fontSize: 45
-//               ),
-//             ),
-//             shape: Border(
-//               top:BorderSide(color: Colors.red),
-//               left:BorderSide(color: Colors.red),
-//               right:BorderSide(color: Colors.red),
-//               bottom:BorderSide(color: Colors.red),
-//             ),
-//           )
-//       ),);
-//   }
-// }
-// class reproducing_screen StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Material();
-//   }
-// }
-//
-//
+*/
+
 
 
 
