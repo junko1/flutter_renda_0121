@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
+import 'package:quiver/async.dart';
 
 
 
@@ -314,7 +315,7 @@ class Play_Button extends StatelessWidget {
               //print("pressed");
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context)=>NextPage(),
+                MaterialPageRoute(builder: (context)=>NextPage1(),
                 )
               );
             },
@@ -336,13 +337,204 @@ class Play_Button extends StatelessWidget {
 }
 //実際にゲームをする画面を作成する　動的なWidgetを作る
 class NextPage1 extends StatefulWidget {
+  NextPage1({Key key, this.title}) : super(key: key);
+  final int  title;
   @override
-  _NextPage1State createState() => _NextPage1State();
-  //var horizontal_position=<double>[];
+  NextPage1State createState() => new NextPage1State();
+}
 
+class NextPage1State extends State<NextPage1> {
+  int _counter = 0;
+
+  void _incrementCounter(){
+    setState(() {
+      _counter++;
+    });
+  }
+//必ず実装しないといけない
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+      appBar: AppBar(
+        //title: Text(widget.title),
+      ),
+      //重ねて表示する画像
+      body: new Stack(
+        children: <Widget>[
+          new Image.asset("CatCosmo.jpg",
+            fit:BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+          ),
+          //クリックすると最初の画面に戻る
+          new Align(
+            alignment: new Alignment(0.9, -1.0),
+            child: Container(
+              height: 60,
+              width: 100,
+              margin: new EdgeInsets.only(bottom: 400),
+              child: new RaisedButton(
+                onPressed:(){
+                  Navigator.pop(context);
+                  //ボタンを押したときの処理を記述する
+                },
+                child: new Text("QUIT",
+                  style: new TextStyle(
+                    fontSize: 20,
+                  ),
+                ),color: Colors.white.withOpacity(0.0),
+                shape: Border(
+                  top:BorderSide(color: Colors.red),
+                  left:BorderSide(color: Colors.red),
+                  right:BorderSide(color: Colors.red),
+                  bottom:BorderSide(color: Colors.red),
+                ),
+              ),
+            ),
+          ),
+         //Press any button to startを表示する
+          new Align(
+            alignment: new Alignment(-0.1, -0.8),
+            child: Container(
+              child: new Text("Press any button\n          to start",
+                style: new TextStyle(
+                  fontSize: 30,
+                  color: Colors.blue,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),),
+         //空白のボタンを付ける1
+          new Align(
+            alignment: new Alignment(-0.9, 0.4),
+            child: Container(
+              height: 100,
+              width: 80,
+              margin: new EdgeInsets.only(bottom: 400),
+              child: new RaisedButton(
+                onPressed:_incrementCounter,
+                 // Navigator.pop(context);
+                child: new Text("    ",
+                  style: new TextStyle(
+                    fontSize: 20,
+                  ),
+                ),color: Colors.white.withOpacity(0.0),
+                shape: Border(
+                  top:BorderSide(color: Colors.red),
+                  left:BorderSide(color: Colors.red),
+                  right:BorderSide(color: Colors.red),
+                  bottom:BorderSide(color: Colors.red),
+                ),
+              ),
+            ),
+          ),
+
+          //空白のボタンを追加する2
+          new Align(
+            alignment: new Alignment(-0.3, 0.4),
+            child: Container(
+              height: 100,
+              width: 80,
+              margin: new EdgeInsets.only(bottom: 400),
+              child: new RaisedButton(
+                onPressed:_incrementCounter,
+                // Navigator.pop(context);
+                child: new Text("    ",
+                  style: new TextStyle(
+                    fontSize: 20,
+                  ),
+                ),color: Colors.white.withOpacity(0.0),
+                shape: Border(
+                  top:BorderSide(color: Colors.red),
+                  left:BorderSide(color: Colors.red),
+                  right:BorderSide(color: Colors.red),
+                  bottom:BorderSide(color: Colors.red),
+                ),
+              ),
+            ),
+          ),
+
+
+          //カウント回数を表示するテキストを作成する
+          new Align(
+            alignment: new Alignment(0, -0.9),
+            child: Container(
+              child: new Text('$_counter',style: Theme.of(context).textTheme.headline4,
+              ),
+            ),),
+        ],
+        /*
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children:<Widget> [
+            Text(
+              '10s'
+            ),      floatingActionButton: FloatingActionButton(
+
+        //onPressed:  _incrementCounter,
+        //tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ),
+            Text(
+                '$_counter',style: Theme.of(context).textTheme.headline4,
+            ),
+          ],
+        ),
+        */
+      ),
+
+    );
+  }
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+class NextPage1 extends StatefulWidget {
+  @override
+  _NextPage1State createState() => _NextPage1State();
+  //var horizontal_position=<double>[];
+}
 class _NextPage1State extends State<NextPage1> {
   @override
   //ここで状態を管理する
@@ -736,6 +928,8 @@ class _NextPage1State extends State<NextPage1> {
                         print("pressed");
                       },
 
+
+
                       child: new Text("　　　",
                         style: new TextStyle(
                             fontSize: 20
@@ -842,6 +1036,10 @@ class _NextPage1State extends State<NextPage1> {
                     margin: new EdgeInsets.only(bottom: 400),
                     child: new RaisedButton(
                       onPressed:(){
+
+                        setState((){
+                          count++;
+                        });
                         print("pressed");
                       },
 
@@ -882,7 +1080,7 @@ class _NextPage1State extends State<NextPage1> {
     return Scaffold();
   }
 }
-
+*/
 /*
 class NextPage extends StatelessWidget {
   @override
